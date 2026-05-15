@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.epharmacy.controllers.HeaderBarController"
+      styleClass="app-header"
+      alignment="CENTER_LEFT"
+      spacing="16"
+      maxHeight="60"
+      minHeight="60">
+    <padding>
+        <Insets top="10" right="28" bottom="10" left="28"/>
+    </padding>
+
+    <HBox fx:id="brandRow" styleClass="header-brand-row" alignment="CENTER_LEFT" spacing="10">
+        <StackPane fx:id="brandIconHost" minWidth="32" minHeight="32"/>
+        <VBox spacing="0" alignment="CENTER_LEFT">
+            <Label fx:id="titleLabel" text="Smart E-Pharmacy" styleClass="header-logo"/>
+            <Label fx:id="breadcrumbLabel" text="Healthcare workspace"
+                   styleClass="header-breadcrumb" visible="false" managed="false"/>
+        </VBox>
+    </HBox>
+
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <TextField fx:id="globalSearch" promptText="Search medicines, ordersâ€¦"
+               styleClass="header-search"
+               prefWidth="300" maxWidth="380"
+               visible="false" managed="false"/>
+
+    <StackPane fx:id="themeToggleTrack" styleClass="theme-toggle-track"
+               onMouseClicked="#onThemeToggle" pickOnBounds="true">
+        <HBox alignment="CENTER" spacing="0">
+            <Label fx:id="sunIcon" text="â˜€" styleClass="theme-toggle-icon,theme-toggle-icon-idle"
+                   prefWidth="40" alignment="CENTER"/>
+            <Region prefWidth="36"/>
+            <Label fx:id="moonIcon" text="â˜½" styleClass="theme-toggle-icon,theme-toggle-icon-active"
+                   prefWidth="40" alignment="CENTER"/>
+        </HBox>
+        <Region fx:id="themeThumb" styleClass="theme-toggle-thumb"
+                StackPane.alignment="CENTER_LEFT"
+                translateX="36" mouseTransparent="true"/>
+    </StackPane>
+</HBox>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.LoginController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1100" prefHeight="720">
+
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <center>
+        <StackPane styleClass="login-container">
+            <HBox styleClass="login-split" alignment="CENTER">
+                <VBox styleClass="login-brand" alignment="TOP_LEFT">
+                    <StackPane fx:id="loginBrandIcon" styleClass="login-brand-icon-wrap"/>
+                    <Label text="Smart E-Pharmacy" styleClass="login-brand-title"/>
+                    <Label text="Modern pharmacy management â€” built for long, focused shifts."
+                           styleClass="login-brand-tagline"/>
+                    <Region prefHeight="20"/>
+                    <Label fx:id="feature1" styleClass="login-brand-feature"/>
+                    <Label fx:id="feature2" styleClass="login-brand-feature"/>
+                    <Label fx:id="feature3" styleClass="login-brand-feature"/>
+                </VBox>
+
+                <VBox alignment="TOP_LEFT" spacing="0" styleClass="login-card">
+                    <Label text="Welcome back" styleClass="login-title"/>
+                    <Label text="Sign in to continue to your workspace" styleClass="login-subtitle"/>
+
+                    <Label text="Email" styleClass="input-label"/>
+                    <TextField fx:id="emailField" promptText="admin@epharmacy.com" maxWidth="360"/>
+
+                    <Region prefHeight="14"/>
+
+                    <Label text="Password" styleClass="input-label"/>
+                    <PasswordField fx:id="passwordField" promptText="Enter your password" maxWidth="360"/>
+
+                    <Region prefHeight="26"/>
+
+                    <Button text="Sign in" maxWidth="360" prefHeight="46"
+                            styleClass="button,button-lg" onAction="#handleLogin"/>
+
+                    <Region prefHeight="18"/>
+
+                    <HBox alignment="CENTER" spacing="8">
+                        <Label text="New patient?" styleClass="label-secondary"/>
+                        <Button text="Create account" styleClass="button-ghost"
+                                onAction="#goToRegister"/>
+                    </HBox>
+
+
+                </VBox>
+            </HBox>
+        </StackPane>
+    </center>
+</BorderPane>

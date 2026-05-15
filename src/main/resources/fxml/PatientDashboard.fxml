@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.PatientDashboardController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1100" prefHeight="700">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Patient portal" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <Label text="NAVIGATION" styleClass="sidebar-role"/>
+            <VBox styleClass="sidebar-nav" spacing="2">
+                <Button fx:id="navHome" text="Home"
+                        styleClass="sidebar-btn,sidebar-btn-active" maxWidth="Infinity"/>
+                <Button fx:id="navBrowse" text="Browse medicines"
+                        styleClass="sidebar-btn" onAction="#goToBrowse" maxWidth="Infinity"/>
+                <Button fx:id="navOrders" text="My orders"
+                        styleClass="sidebar-btn" onAction="#goToOrders" maxWidth="Infinity"/>
+                <Button fx:id="navRx" text="Prescriptions"
+                        styleClass="sidebar-btn" onAction="#goToPrescription" maxWidth="Infinity"/>
+                <Button fx:id="navProfile" text="Profile"
+                        styleClass="sidebar-btn" onAction="#goToProfile" maxWidth="Infinity"/>
+            </VBox>
+            <Region styleClass="spacer-vertical"/>
+            <VBox styleClass="sidebar-footer">
+                <Separator/>
+                <Button fx:id="navLogout" text="Sign out"
+                        styleClass="sidebar-btn,sidebar-btn-logout"
+                        onAction="#logout" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane,content-scroll">
+            <VBox fx:id="mainContent" spacing="24" styleClass="content-area">
+                <VBox styleClass="page-header">
+                    <Label text="YOUR HEALTH" styleClass="page-eyebrow"/>
+                    <Label fx:id="welcomeLabel" styleClass="label-heading"/>
+                    <Label text="Shop with confidence â€” orders and prescriptions in one place"
+                           styleClass="page-subtitle"/>
+                </VBox>
+
+                <HBox styleClass="stats-row">
+                    <VBox fx:id="statOrders" styleClass="card,card-blue,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-blue"/>
+                            <VBox spacing="2">
+                                <Label text="Total orders" styleClass="stat-card-label"/>
+                                <Label fx:id="orderCountLabel" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="statRx" styleClass="card,card-mint,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-mint"/>
+                            <VBox spacing="2">
+                                <Label text="Prescriptions" styleClass="stat-card-label"/>
+                                <Label fx:id="rxCountLabel" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <Label text="Quick actions" styleClass="section-title"/>
+                <HBox styleClass="quick-actions" spacing="16">
+                    <Button fx:id="actionBrowse" text="Browse medicines"
+                            styleClass="button,button-lg" onAction="#goToBrowse" prefWidth="240"/>
+                    <Button fx:id="actionOrders" text="My orders"
+                            styleClass="button-secondary,button-lg" onAction="#goToOrders" prefWidth="240"/>
+                    <Button fx:id="actionRx" text="Upload prescription"
+                            styleClass="button,button-success,button-lg" onAction="#goToPrescription" prefWidth="240"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.PharmacistDashboardController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1100" prefHeight="700">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Pharmacist workspace" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <Label text="NAVIGATION" styleClass="sidebar-role"/>
+            <VBox styleClass="sidebar-nav" spacing="2">
+                <Button fx:id="navDashboard" text="Dashboard"
+                        styleClass="sidebar-btn,sidebar-btn-active" maxWidth="Infinity"/>
+                <Button fx:id="navMedicines" text="Medicines"
+                        styleClass="sidebar-btn" onAction="#goToMedicines" maxWidth="Infinity"/>
+                <Button fx:id="navOrders" text="Orders"
+                        styleClass="sidebar-btn" onAction="#goToOrders" maxWidth="Infinity"/>
+                <Button fx:id="navPrescriptions" text="Prescriptions"
+                        styleClass="sidebar-btn" onAction="#goToPrescriptions" maxWidth="Infinity"/>
+            </VBox>
+            <Region styleClass="spacer-vertical"/>
+            <VBox styleClass="sidebar-footer">
+                <Separator/>
+                <Button fx:id="navLogout" text="Sign out"
+                        styleClass="sidebar-btn,sidebar-btn-logout"
+                        onAction="#logout" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane,content-scroll">
+            <VBox fx:id="mainContent" spacing="24" styleClass="content-area">
+                <VBox styleClass="page-header">
+                    <Label text="PHARMACY OPS" styleClass="page-eyebrow"/>
+                    <Label fx:id="welcomeLabel" styleClass="label-heading"/>
+                    <Label text="Inventory alerts and pending work in one place" styleClass="page-subtitle"/>
+                </VBox>
+
+                <HBox styleClass="stats-row">
+                    <VBox fx:id="statLowStock" styleClass="card,card-orange,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-orange"/>
+                            <VBox spacing="2">
+                                <Label text="Low stock" styleClass="stat-card-label"/>
+                                <Label fx:id="lowStockCount" text="0" styleClass="label-stat"/>
+                                <Label text="items need attention" styleClass="stat-card-hint"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="statOrders" styleClass="card,card-blue,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-blue"/>
+                            <VBox spacing="2">
+                                <Label text="Pending orders" styleClass="stat-card-label"/>
+                                <Label fx:id="pendingOrderCount" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="statRx" styleClass="card,card-red,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-red"/>
+                            <VBox spacing="2">
+                                <Label text="Pending prescriptions" styleClass="stat-card-label"/>
+                                <Label fx:id="pendingRxCount" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="statMeds" styleClass="card,card-mint,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-mint"/>
+                            <VBox spacing="2">
+                                <Label text="Total medicines" styleClass="stat-card-label"/>
+                                <Label fx:id="totalMedicines" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <Label text="Quick actions" styleClass="section-title"/>
+                <HBox styleClass="quick-actions" spacing="16">
+                    <Button fx:id="actionMedicines" text="Manage medicines"
+                            styleClass="button,button-lg" onAction="#goToMedicines" prefWidth="240"/>
+                    <Button fx:id="actionOrders" text="Review orders"
+                            styleClass="button-secondary,button-lg" onAction="#goToOrders" prefWidth="240"/>
+                    <Button fx:id="actionRx" text="Review prescriptions"
+                            styleClass="button,button-success,button-lg" onAction="#goToPrescriptions" prefWidth="240"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

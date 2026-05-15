@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.PatientPrescriptionController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1000" prefHeight="680">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Prescriptions" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <VBox styleClass="sidebar-nav">
+                <Button fx:id="btnBack" text="Back to home"
+                        styleClass="sidebar-btn" onAction="#goBack" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <HBox spacing="20" styleClass="content-area-compact">
+            <VBox spacing="12" HBox.hgrow="ALWAYS">
+                <VBox styleClass="page-header">
+                    <Label text="PRESCRIPTIONS" styleClass="page-eyebrow"/>
+                    <Label text="My prescriptions" styleClass="label-heading"/>
+                    <Label text="Status of uploads and pharmacist review" styleClass="page-subtitle"/>
+                </VBox>
+                <TableView fx:id="table" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idCol" text="ID" prefWidth="60"/>
+                        <TableColumn fx:id="statusCol" text="Status" prefWidth="120"/>
+                        <TableColumn fx:id="dateCol" text="Date" prefWidth="160"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox styleClass="card,form-panel" prefWidth="300" minWidth="280" spacing="14">
+                <Label text="Upload prescription" styleClass="form-panel-title"/>
+                <Label text="Upload a clear photo for pharmacist review."
+                       styleClass="label-secondary" wrapText="true"/>
+
+                <ImageView fx:id="previewImage" fitWidth="260" fitHeight="220"
+                           preserveRatio="true" styleClass="image-preview"/>
+
+                <Label fx:id="selectedFilePath" text="No file selected"
+                       styleClass="hint-text" wrapText="true"/>
+
+                <Button fx:id="btnBrowse" text="Browse file"
+                        styleClass="button-secondary" onAction="#browseFile" maxWidth="Infinity"/>
+                <Button fx:id="btnUpload" text="Upload"
+                        styleClass="button,button-success,button-lg"
+                        onAction="#uploadPrescription" maxWidth="Infinity"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.AdminMedicinesController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1200" prefHeight="750">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Inventory" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <VBox styleClass="sidebar-nav">
+                <Button fx:id="btnBack" text="Back to dashboard"
+                        styleClass="sidebar-btn" onAction="#goBack" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" styleClass="content-area-compact">
+            <VBox styleClass="page-header">
+                <Label text="INVENTORY" styleClass="page-eyebrow"/>
+                <Label text="Medicine management" styleClass="label-heading"/>
+                <Label text="Search, edit stock, and maintain your catalog" styleClass="page-subtitle"/>
+            </VBox>
+
+            <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+                <TextField fx:id="searchField" promptText="Search name, category, manufacturerÃ¢â‚¬Â¦"
+                           styleClass="toolbar-search" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnSearch" text="Search" styleClass="button,button-sm" onAction="#handleSearch"/>
+                <Region prefWidth="8"/>
+                <Button fx:id="btnAdd" text="Add" styleClass="button,button-success,button-sm" onAction="#handleAdd"/>
+                <Button fx:id="btnUpdate" text="Update" styleClass="button,button-sm" onAction="#handleUpdate"/>
+                <Button fx:id="btnDelete" text="Delete" styleClass="button,button-danger,button-sm" onAction="#handleDelete"/>
+            </HBox>
+
+            <HBox spacing="16" VBox.vgrow="ALWAYS">
+                <TableView fx:id="medicineTable" HBox.hgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idCol" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="nameCol" text="Name" prefWidth="160"/>
+                        <TableColumn fx:id="categoryCol" text="Category" prefWidth="110"/>
+                        <TableColumn fx:id="priceCol" text="Price" prefWidth="90"/>
+                        <TableColumn fx:id="qtyCol" text="Stock" prefWidth="70"/>
+                        <TableColumn fx:id="expiryCol" text="Expiry" prefWidth="100"/>
+                        <TableColumn fx:id="rxCol" text="Rx" prefWidth="70"/>
+                    </columns>
+                </TableView>
+
+                <ScrollPane fitToWidth="true" styleClass="edge-to-edge" prefWidth="340" minWidth="300" VBox.vgrow="ALWAYS">
+                    <VBox styleClass="card,form-panel" spacing="10">
+                        <Label text="Medicine details" styleClass="form-panel-title"/>
+                        <Label text="Name" styleClass="input-label"/>
+                        <TextField fx:id="nameField" promptText="Medicine name"/>
+                        <Label text="Category" styleClass="input-label"/>
+                        <TextField fx:id="categoryField" promptText="e.g. Antibiotic"/>
+                        <HBox spacing="10">
+                            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                <Label text="Price ($)" styleClass="input-label"/>
+                                <TextField fx:id="priceField" promptText="0.00"/>
+                            </VBox>
+                            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                <Label text="Stock" styleClass="input-label"/>
+                                <TextField fx:id="quantityField" promptText="0"/>
+                            </VBox>
+                        </HBox>
+                        <Label text="Expiry" styleClass="input-label"/>
+                        <DatePicker fx:id="expiryPicker" maxWidth="Infinity"/>
+                        <Label text="Manufacturer" styleClass="input-label"/>
+                        <TextField fx:id="manufacturerField" promptText="Company"/>
+                        <CheckBox fx:id="requiresRxCheck" text="Requires prescription"/>
+                        <Label text="Description" styleClass="input-label"/>
+                        <TextArea fx:id="descriptionArea" prefRowCount="3" wrapText="true"/>
+                        <Label text="Image" styleClass="input-label"/>
+                        <HBox spacing="8">
+                            <TextField fx:id="imagePathField" promptText="Path" HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnBrowse" text="Browse" styleClass="button-secondary,button-sm"
+                                    onAction="#browseImage"/>
+                        </HBox>
+                    </VBox>
+                </ScrollPane>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

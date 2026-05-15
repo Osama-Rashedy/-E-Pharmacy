@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.AdminOrdersController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1100" prefHeight="700">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Orders" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <VBox styleClass="sidebar-nav">
+                <Button fx:id="btnBack" text="Back to dashboard"
+                        styleClass="sidebar-btn" onAction="#goBack" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" styleClass="content-area-compact">
+            <VBox styleClass="page-header">
+                <Label text="FULFILLMENT" styleClass="page-eyebrow"/>
+                <Label text="Order management" styleClass="label-heading"/>
+                <Label text="Approve, deliver, or cancel patient orders" styleClass="page-subtitle"/>
+            </VBox>
+
+            <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+                <Label text="Status" styleClass="input-label"/>
+                <ComboBox fx:id="statusFilter" prefWidth="160"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnApprove" text="Approve" styleClass="button,button-success,button-sm" onAction="#approveOrder"/>
+                <Button fx:id="btnDeliver" text="Delivered" styleClass="button,button-sm" onAction="#markDelivered"/>
+                <Button fx:id="btnCancel" text="Cancel" styleClass="button,button-danger,button-sm" onAction="#cancelOrder"/>
+                <Button fx:id="btnUndo" text="Undo" styleClass="button-secondary,button-sm" onAction="#undoLast"/>
+                <Button fx:id="btnPdf" text="Export PDF" styleClass="button-secondary,button-sm" onAction="#exportPDF"/>
+            </HBox>
+
+            <TableView fx:id="ordersTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idCol" text="Order #" prefWidth="80"/>
+                    <TableColumn fx:id="patientCol" text="Patient" prefWidth="180"/>
+                    <TableColumn fx:id="totalCol" text="Total" prefWidth="100"/>
+                    <TableColumn fx:id="paymentCol" text="Payment" prefWidth="120"/>
+                    <TableColumn fx:id="statusCol" text="Status" prefWidth="120"/>
+                    <TableColumn fx:id="dateCol" text="Date" prefWidth="160"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.ProfileController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="800" prefHeight="560">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Account" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <VBox styleClass="sidebar-nav">
+                <Button fx:id="btnBack" text="Back"
+                        styleClass="sidebar-btn" onAction="#goBack" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" styleClass="content-area" alignment="TOP_CENTER">
+            <VBox styleClass="page-header" maxWidth="440">
+                <Label text="ACCOUNT" styleClass="page-eyebrow"/>
+                <Label text="Profile settings" styleClass="label-heading"/>
+                <Label text="Update your contact details" styleClass="page-subtitle"/>
+            </VBox>
+
+            <VBox styleClass="card,form-panel" maxWidth="440" spacing="14">
+                <Label text="Full name" styleClass="input-label"/>
+                <TextField fx:id="nameField" promptText="Your name"/>
+
+                <Label text="Email (read-only)" styleClass="input-label"/>
+                <TextField fx:id="emailField" editable="false" styleClass="field-readonly"/>
+
+                <Label text="Phone" styleClass="input-label"/>
+                <TextField fx:id="phoneField" promptText="01xxxxxxxxx"/>
+
+                <Label text="Address" styleClass="input-label"/>
+                <TextField fx:id="addressField" promptText="City, street…"/>
+
+                <Button fx:id="btnSave" text="Save changes"
+                        styleClass="button,button-success,button-lg"
+                        onAction="#saveProfile" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

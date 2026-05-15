@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.AdminPrescriptionsController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1100" prefHeight="700">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Prescriptions" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <VBox styleClass="sidebar-nav">
+                <Button fx:id="btnBack" text="Back to dashboard"
+                        styleClass="sidebar-btn" onAction="#goBack" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" styleClass="content-area-compact">
+            <VBox styleClass="page-header">
+                <Label text="CLINICAL" styleClass="page-eyebrow"/>
+                <Label text="Prescription review" styleClass="label-heading"/>
+                <Label text="Verify uploads before dispensing" styleClass="page-subtitle"/>
+            </VBox>
+
+            <HBox spacing="12" alignment="CENTER_LEFT" styleClass="toolbar">
+                <Label text="Status" styleClass="input-label"/>
+                <ComboBox fx:id="statusFilter" prefWidth="160"/>
+            </HBox>
+
+            <HBox spacing="16" VBox.vgrow="ALWAYS">
+                <TableView fx:id="table" HBox.hgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idCol" text="ID" prefWidth="60"/>
+                        <TableColumn fx:id="patientCol" text="Patient" prefWidth="180"/>
+                        <TableColumn fx:id="statusCol" text="Status" prefWidth="120"/>
+                        <TableColumn fx:id="dateCol" text="Date" prefWidth="160"/>
+                    </columns>
+                </TableView>
+
+                <VBox styleClass="card,form-panel" spacing="12" prefWidth="300" minWidth="260">
+                    <Label text="Preview" styleClass="form-panel-title"/>
+                    <ImageView fx:id="prescriptionImage" fitWidth="260" fitHeight="260"
+                               preserveRatio="true" styleClass="image-preview"/>
+                    <Label text="Notes" styleClass="input-label"/>
+                    <TextArea fx:id="notesArea" prefRowCount="3" promptText="Review notes (optional)"/>
+                    <HBox spacing="10">
+                        <Button fx:id="btnApprove" text="Approve"
+                                styleClass="button,button-success" onAction="#approve" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button fx:id="btnReject" text="Reject"
+                                styleClass="button,button-danger" onAction="#reject" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

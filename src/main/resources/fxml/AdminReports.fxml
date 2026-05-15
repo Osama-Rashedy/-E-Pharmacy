@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.AdminReportsController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1100" prefHeight="700">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Analytics" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <VBox styleClass="sidebar-nav">
+                <Button fx:id="btnBack" text="Back to dashboard"
+                        styleClass="sidebar-btn" onAction="#goBack" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane,content-scroll">
+            <VBox spacing="24" styleClass="content-area">
+                <VBox styleClass="page-header">
+                    <Label text="INSIGHTS" styleClass="page-eyebrow"/>
+                    <Label text="Reports &amp; analytics" styleClass="label-heading"/>
+                    <Label text="Revenue trends and inventory distribution" styleClass="page-subtitle"/>
+                </VBox>
+
+                <BarChart fx:id="revenueChart" title="Monthly revenue (last 6 months)"
+                          prefHeight="300" animated="true" styleClass="card,chart-card">
+                    <xAxis><CategoryAxis/></xAxis>
+                    <yAxis><NumberAxis/></yAxis>
+                </BarChart>
+
+                <HBox spacing="20">
+                    <PieChart fx:id="categoryPie" title="Medicines by category"
+                              prefWidth="500" prefHeight="300" animated="true"
+                              styleClass="card,chart-card" HBox.hgrow="ALWAYS"/>
+                    <PieChart fx:id="statusPie" title="Orders by status"
+                              prefWidth="500" prefHeight="300" animated="true"
+                              styleClass="card,chart-card" HBox.hgrow="ALWAYS"/>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

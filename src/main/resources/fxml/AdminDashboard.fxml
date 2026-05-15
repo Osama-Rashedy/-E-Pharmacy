@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.AdminDashboardController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1200" prefHeight="750">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Admin workspace" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <Label text="NAVIGATION" styleClass="sidebar-role"/>
+            <VBox styleClass="sidebar-nav" spacing="2">
+                <Button fx:id="navDashboard" text="Dashboard"
+                        styleClass="sidebar-btn,sidebar-btn-active" maxWidth="Infinity"/>
+                <Button fx:id="navMedicines" text="Medicines"
+                        styleClass="sidebar-btn" onAction="#goToMedicines" maxWidth="Infinity"/>
+                <Button fx:id="navOrders" text="Orders"
+                        styleClass="sidebar-btn" onAction="#goToOrders" maxWidth="Infinity"/>
+                <Button fx:id="navPrescriptions" text="Prescriptions"
+                        styleClass="sidebar-btn" onAction="#goToPrescriptions" maxWidth="Infinity"/>
+                <Button fx:id="navReports" text="Reports"
+                        styleClass="sidebar-btn" onAction="#goToReports" maxWidth="Infinity"/>
+            </VBox>
+            <Region styleClass="spacer-vertical"/>
+            <VBox styleClass="sidebar-footer" spacing="2">
+                <Separator/>
+                <Button fx:id="navLogout" text="Sign out"
+                        styleClass="sidebar-btn,sidebar-btn-logout"
+                        onAction="#logout" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="scroll-pane,content-scroll">
+            <VBox fx:id="mainContent" spacing="24" styleClass="content-area">
+
+                <VBox styleClass="page-header">
+                    <Label text="OVERVIEW" styleClass="page-eyebrow"/>
+                    <Label fx:id="welcomeLabel" text="Welcome, Admin" styleClass="label-heading"/>
+                    <Label text="System metrics and team management at a glance" styleClass="page-subtitle"/>
+                </VBox>
+
+                <HBox styleClass="stats-row">
+                    <VBox fx:id="statPharma" styleClass="card,card-cyan,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-cyan"/>
+                            <VBox spacing="2">
+                                <Label text="Pharmacists" styleClass="stat-card-label"/>
+                                <Label fx:id="pharmacistCount" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="statPatients" styleClass="card,card-mint,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-mint"/>
+                            <VBox spacing="2">
+                                <Label text="Patients" styleClass="stat-card-label"/>
+                                <Label fx:id="patientCount" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="statMedicines" styleClass="card,card-blue,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-blue"/>
+                            <VBox spacing="2">
+                                <Label text="Medicines" styleClass="stat-card-label"/>
+                                <Label fx:id="medicineCount" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="statOrders" styleClass="card,card-orange,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-orange"/>
+                            <VBox spacing="2">
+                                <Label text="Orders" styleClass="stat-card-label"/>
+                                <Label fx:id="orderCount" text="0" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    <VBox fx:id="statRevenue" styleClass="card,card-green,stat-card,flex-grow">
+                        <HBox styleClass="stat-card-header">
+                            <StackPane styleClass="stat-card-icon-wrap,stat-icon-mint"/>
+                            <VBox spacing="2">
+                                <Label text="Revenue" styleClass="stat-card-label"/>
+                                <Label fx:id="totalRevenue" text="0.00" styleClass="label-stat"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="16">
+                    <BarChart fx:id="revenueChart" title="Monthly revenue"
+                              prefHeight="280" HBox.hgrow="ALWAYS"
+                              animated="true" styleClass="card,chart-card">
+                        <xAxis><CategoryAxis/></xAxis>
+                        <yAxis><NumberAxis/></yAxis>
+                    </BarChart>
+                    <PieChart fx:id="categoryPie" title="Categories"
+                              prefWidth="320" prefHeight="280"
+                              animated="true" styleClass="card,chart-card"/>
+                </HBox>
+
+                <VBox styleClass="card" spacing="14">
+                    <Label text="Add pharmacist" styleClass="section-title"/>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <TextField fx:id="pharmaNameField" promptText="Full name" prefWidth="180"/>
+                        <TextField fx:id="pharmaEmailField" promptText="Email" prefWidth="200"/>
+                        <PasswordField fx:id="pharmaPasswordField" promptText="Password" prefWidth="160"/>
+                        <TextField fx:id="pharmaPhoneField" promptText="Phone" prefWidth="140"/>
+                        <Button fx:id="btnAddPharma" text="Add" styleClass="button" onAction="#addPharmacist"/>
+                    </HBox>
+                </VBox>
+
+                <VBox styleClass="card" spacing="12">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <Label text="Pharmacists" styleClass="section-title"/>
+                        <Region styleClass="flex-grow"/>
+                        <Button fx:id="btnDeletePharma" text="Delete selected"
+                                styleClass="button,button-danger,button-sm"
+                                onAction="#deletePharmacist"/>
+                    </HBox>
+                    <TableView fx:id="pharmacistTable" prefHeight="200">
+                        <columns>
+                            <TableColumn fx:id="pharmaIdCol" text="ID" prefWidth="60"/>
+                            <TableColumn fx:id="pharmaNameCol" text="Name" prefWidth="180"/>
+                            <TableColumn fx:id="pharmaEmailCol" text="Email" prefWidth="220"/>
+                            <TableColumn fx:id="pharmaPhoneCol" text="Phone" prefWidth="140"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox styleClass="card" spacing="12">
+                    <Label text="Registered patients" styleClass="section-title"/>
+                    <TableView fx:id="patientTable" prefHeight="200">
+                        <columns>
+                            <TableColumn fx:id="patientIdCol" text="ID" prefWidth="60"/>
+                            <TableColumn fx:id="patientNameCol" text="Name" prefWidth="180"/>
+                            <TableColumn fx:id="patientEmailCol" text="Email" prefWidth="220"/>
+                            <TableColumn fx:id="patientPhoneCol" text="Phone" prefWidth="140"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

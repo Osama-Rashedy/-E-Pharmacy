@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      styleClass="sidebar" spacing="4">
+    <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+        <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+        <VBox spacing="2">
+            <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+            <Label fx:id="sidebarContextLabel" text="Workspace" styleClass="sidebar-tagline"/>
+        </VBox>
+    </HBox>
+    <Separator/>
+    <VBox styleClass="sidebar-nav" spacing="2">
+        <Button fx:id="backButton" text="Back to dashboard"
+                styleClass="sidebar-btn" maxWidth="Infinity"/>
+    </VBox>
+</VBox>

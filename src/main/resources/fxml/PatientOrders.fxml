@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.epharmacy.controllers.PatientOrdersController"
+            fx:id="rootPane"
+            styleClass="app-root"
+            prefWidth="1100" prefHeight="700">
+    <top>
+        <fx:include source="includes/HeaderBar.fxml"/>
+    </top>
+
+    <left>
+        <VBox styleClass="sidebar" spacing="4">
+            <HBox styleClass="sidebar-brand" alignment="CENTER_LEFT" spacing="10">
+                <StackPane fx:id="sidebarBrandMark" styleClass="sidebar-brand-mark"/>
+                <VBox spacing="2">
+                    <Label text="Smart E-Pharmacy" styleClass="sidebar-logo"/>
+                    <Label text="Orders" styleClass="sidebar-tagline"/>
+                </VBox>
+            </HBox>
+            <Separator/>
+            <VBox styleClass="sidebar-nav">
+                <Button fx:id="btnBack" text="Back to home"
+                        styleClass="sidebar-btn" onAction="#goBack" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20" styleClass="content-area-compact">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <VBox styleClass="page-header" HBox.hgrow="ALWAYS">
+                    <Label text="ORDERS" styleClass="page-eyebrow"/>
+                    <Label text="My orders" styleClass="label-heading"/>
+                    <Label text="Track status and export receipts" styleClass="page-subtitle"/>
+                </VBox>
+                <Button fx:id="btnPdf" text="Export PDF"
+                        styleClass="button-secondary,button-sm" onAction="#exportPDF"/>
+            </HBox>
+
+            <TableView fx:id="ordersTable" prefHeight="260">
+                <columns>
+                    <TableColumn fx:id="idCol" text="Order #" prefWidth="80"/>
+                    <TableColumn fx:id="totalCol" text="Total" prefWidth="100"/>
+                    <TableColumn fx:id="paymentCol" text="Payment" prefWidth="120"/>
+                    <TableColumn fx:id="statusCol" text="Status" prefWidth="120"/>
+                    <TableColumn fx:id="dateCol" text="Date" prefWidth="160"/>
+                </columns>
+            </TableView>
+
+            <Label text="Line items" styleClass="section-title"/>
+            <TableView fx:id="itemsTable" prefHeight="220" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="itemNameCol" text="Medicine" prefWidth="200"/>
+                    <TableColumn fx:id="itemQtyCol" text="Qty" prefWidth="80"/>
+                    <TableColumn fx:id="itemPriceCol" text="Price" prefWidth="100"/>
+                    <TableColumn fx:id="itemSubtotalCol" text="Subtotal" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
