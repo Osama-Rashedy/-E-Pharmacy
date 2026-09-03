@@ -138,3 +138,8 @@ SmartEPharmacy/
 - **BCrypt** — Secure password hashing
 - **iText 7** — PDF generation
 - **Maven** — Dependency management
+
+
+-Osama
+-Yousry
+-Rashedy
